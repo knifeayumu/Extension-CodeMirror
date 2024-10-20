@@ -12,15 +12,14 @@ module.exports = {
             {
                 test: /\.js/,
                 exclude: /node_modules/,
-                options: {
-                    cacheDirectory: true,
-                    presets: [
-                        '@babel/preset-env',
-                        ['@babel/preset-react', { runtime: 'automatic' }],
-                    ],
-                },
-                loader: 'babel-loader',
             },
+            {
+                test: /\.css/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                ],
+            }
         ],
     },
     optimization: {
