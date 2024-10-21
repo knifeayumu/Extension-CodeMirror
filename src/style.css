@@ -18,6 +18,10 @@ dialog.popup:has(.codemirror-host) {
     height: 100%;
 }
 
+.codemirror-host .cm-editor .cm-content {
+    font-family: var(--monoFontFamily);
+}
+
 .codemirror-host .cm-editor.cm-focused  .cm-selectionLayer .cm-selectionBackground,
 .codemirror-host .cm-editor .cm-selectionBackground  {
     background: rgba(200, 200, 200, 0.15);

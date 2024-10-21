@@ -3,9 +3,10 @@ import { highlightActiveLineGutter, highlightSpecialChars, drawSelection, dropCu
 export { EditorView } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { indentOnInput, syntaxHighlighting, defaultHighlightStyle, bracketMatching } from '@codemirror/language';
-import { history, defaultKeymap, historyKeymap } from '@codemirror/commands';
+import { history, defaultKeymap, historyKeymap, insertTab } from '@codemirror/commands';
 import { highlightSelectionMatches, searchKeymap } from '@codemirror/search';
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete';
+import { css } from '@codemirror/lang-css';
 import './style.css';
 
 const observer = new MutationObserver((mutations) => {
@@ -36,6 +37,7 @@ function setupCodeMirror(target) {
     host.classList.add('codemirror-host');
     target.classList.add('displayNone');
     target.parentElement.appendChild(host);
+    const isCss = target.dataset.for === 'customCSS';
     new EditorView({
         doc: target.value,
         extensions: [
@@ -57,6 +59,7 @@ function setupCodeMirror(target) {
                 ...defaultKeymap,
                 ...searchKeymap,
                 ...historyKeymap,
+                { key: 'Tab', run: insertTab },
             ]),
             EditorView.updateListener.of((update) => {
                 if (update.docChanged) {
@@ -64,6 +67,7 @@ function setupCodeMirror(target) {
                     target.dispatchEvent(new Event('input', { bubbles: true }));
                 }
             }),
+            isCss ? css() : [],
         ],
         parent: host,
     });

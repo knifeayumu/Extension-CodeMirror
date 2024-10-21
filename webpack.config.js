@@ -22,6 +22,10 @@ module.exports = {
             }
         ],
     },
+    performance: {
+        hints: false,
+    },
+    stats: 'minimal',
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin({
