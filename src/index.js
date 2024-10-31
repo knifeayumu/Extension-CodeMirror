@@ -38,7 +38,7 @@ function setupCodeMirror(target) {
     target.classList.add('displayNone');
     target.parentElement.appendChild(host);
     const isCss = target.dataset.for === 'customCSS';
-    new EditorView({
+    const editor = new EditorView({
         doc: target.value,
         extensions: [
             highlightActiveLineGutter(),
@@ -71,4 +71,12 @@ function setupCodeMirror(target) {
         ],
         parent: host,
     });
+
+    editor.dispatch({
+        selection: {
+            anchor: editor.state.doc.length,
+            head: editor.state.doc.length,
+        },
+    });
+    editor.focus();
 }
