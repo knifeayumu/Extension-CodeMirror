@@ -1,6 +1,6 @@
 # CodeMirror for SillyTavern
 
-[WIP] A fancier expanded text editor
+A fancier expanded text editor
 
 ## How to use
 
