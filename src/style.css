@@ -5,6 +5,9 @@ dialog.popup:has(.codemirror-host) {
 .codemirror-host {
     text-align: initial;
     color: var(--SmartThemeBodyColor);
+    background-color: var(--black30a);
+    border: 1px solid var(--SmartThemeBorderColor);
+    border-radius: 5px;
     overflow-y: auto;
     height: 100%;
     width: 100%;
