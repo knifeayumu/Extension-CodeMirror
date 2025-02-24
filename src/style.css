@@ -73,3 +73,23 @@ dialog.popup:has(.codemirror-host) {
     width: auto;
     background-image: none;
 }
+
+.codemirror-host .cm-search-button {
+    color: var(--SmartThemeBodyColor);
+    background-color: var(--SmartThemeBlurTintColor);
+    border: 1px solid var(--SmartThemeBorderColor);
+    border-radius: 5px;
+    padding: 3px 5px;
+    width: min-content;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto;
+    background-image: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
