@@ -4,10 +4,12 @@ export { EditorView } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { indentOnInput, syntaxHighlighting, defaultHighlightStyle, bracketMatching } from '@codemirror/language';
 import { history, defaultKeymap, historyKeymap, insertTab } from '@codemirror/commands';
-import { highlightSelectionMatches, searchKeymap } from '@codemirror/search';
+import { highlightSelectionMatches, searchKeymap, openSearchPanel } from '@codemirror/search';
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete';
 import { css } from '@codemirror/lang-css';
 import './style.css';
+
+const { isMobile } = SillyTavern.getContext();
 
 const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
@@ -79,4 +81,18 @@ function setupCodeMirror(target) {
         },
     });
     editor.focus();
+
+    // Create search button
+    if (isMobile()) {
+        const searchButton = document.createElement('button');
+        searchButton.textContent = 'Search';
+        searchButton.classList.add('cm-search-button');
+        host.appendChild(searchButton);
+
+        // Add event listener to the search button
+        searchButton.addEventListener('click', () => {
+            editor.focus();
+            openSearchPanel(editor); // Open search panel directly
+        });
+    }
 }
